@@ -9,8 +9,7 @@ public Board() {
 		
 	}
 	
-	public void newBoard(int row, int col) {}
-	public void newBoard() {
+		public void newBoard() {
 		
 		String[][] myboard = new String[3][3];
 		
@@ -24,39 +23,20 @@ public Board() {
 		myboard[2][1] = "8";
 		myboard[2][2] = "9";
 		
-		for (int i = 0 ; i < myboard.length ; i++) {
-			for (int x = 0 ; x < myboard.length ; x++) {
-				if (x == 2) {
-					System.out.println(myboard[i][x]);
-				} else {
-					System.out.print(myboard[i][x]);
-				}
+			for (int row = 0 ; row < myboard.length ; row++) {
 				
+					for (int column = 0 ; column < myboard.length ; column++) {
+						if (column == 2) {
+							System.out.println(myboard[row][column]);
+						if (row == 0 || row == 1) {
+							System.out.println("-+-+-");
+							}
+						} else {
+							System.out.print(myboard[row][column] + "|");
+						}
+					
+					}
 			}
+		
 		}
-		
-	
-//		printBoard(myboard);
-		
-		
-	}
-	
-//	public void printBoard(String[][] board) {
-//		for (int row=0; row < board.length; row++) {
-//			for (int col = 0; col<board[row].length; col++) {
-//				
-//				if(board[row][col].equals("")){
-//					System.out.print(" ");
-//				} else {
-//					System.out.print(board[row][col]);
-//				}
-//				if(col<(board.length-1)) {
-//					System.out.print("|");
-//				}
-//			}
-//			System.out.print("\n------\n");
-//		}
-//	}
-	
-	
 }
