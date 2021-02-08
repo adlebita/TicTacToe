@@ -6,6 +6,8 @@ public class Main {
 		// TODO Auto-generated method stub
 		Board tictactoe  = new Board();
 		
+		System.out.println("Run Finished");
+		
 		}
 
 }
