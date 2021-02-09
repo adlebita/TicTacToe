@@ -3,40 +3,68 @@ import java.util.Arrays;
 
 public class Board {
 
+String [][] myBoard;	
+	
 public Board() {
 		
 		newBoard();
 		
 	}
 	
-		public void newBoard() {
+		public String[][] newBoard() {
 		
-		String[][] myboard = new String[3][3];
+		String[][] myBoard = new String[3][3];
 		
-		myboard[0][0] = "1";
-		myboard[0][1] = "2";
-		myboard[0][2] = "3";
-		myboard[1][0] = "4";
-		myboard[1][1] = "5";
-		myboard[1][2] = "6";
-		myboard[2][0] = "7";
-		myboard[2][1] = "8";
-		myboard[2][2] = "9";
+		myBoard[0][0] = "1";
+		myBoard[0][1] = "2";
+		myBoard[0][2] = "3";
+		myBoard[1][0] = "4";
+		myBoard[1][1] = "1";
+		myBoard[1][2] = "6";
+		myBoard[2][0] = "7";
+		myBoard[2][1] = "8";
+		myBoard[2][2] = "1";
 		
-			for (int row = 0 ; row < myboard.length ; row++) {
+			for (int row = 0 ; row < myBoard.length ; row++) {
 				
-					for (int column = 0 ; column < myboard.length ; column++) {
+					for (int column = 0 ; column < myBoard.length ; column++) {
 						if (column == 2) {
-							System.out.println(myboard[row][column]);
+							System.out.println(myBoard[row][column]);
 						if (row == 0 || row == 1) {
 							System.out.println("-+-+-");
 							}
 						} else {
-							System.out.print(myboard[row][column] + "|");
+							System.out.print(myBoard[row][column] + "|");
 						}
 					
 					}
 			}
 		
+		return this.myBoard = myBoard;
+		
 		}
+		
+		public boolean checkBoard() {
+			// check row matches
+		if(myBoard[0][0] == myBoard[0][1] && myBoard[0][1] == myBoard[0][2]) {
+				return true;
+			} else if(myBoard[1][0] == myBoard[1][1] && myBoard[1][1] == myBoard[1][2]) {
+				return true;
+			} else if(myBoard[2][0] == myBoard[2][1] && myBoard[2][1] == myBoard[2][2]) {
+				return true;
+			// check column matches
+			} else if(myBoard[0][0] == myBoard[1][0] && myBoard[1][0] == myBoard[2][0]) {
+				return true;
+			} else if(myBoard[0][1] == myBoard[1][1] && myBoard[1][1] == myBoard[2][1]) {
+				return true;
+			} else if(myBoard[0][2] == myBoard[1][2] && myBoard[1][2] == myBoard[2][2]) {
+				return true;
+			// check diagonal matches
+			} else if(myBoard[0][0] == myBoard[1][1] && myBoard[1][1] == myBoard[2][2]) {
+				return true;
+			} else if(myBoard[0][2] == myBoard[1][1] && myBoard[1][1] == myBoard[2][0]);
+		
+			return false;
+		}
+		
 }
