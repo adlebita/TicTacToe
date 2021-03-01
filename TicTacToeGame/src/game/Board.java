@@ -101,4 +101,6 @@ public Board() {
 			
 			return this.count = count++;
 		}
+		
+		System.out.println("Final git check");
 }
