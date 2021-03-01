@@ -8,6 +8,14 @@ public class Main {
 		tictactoe.checkBoard();
 		
 		System.out.println(tictactoe.checkBoard());
+
+		System.out.println("Run Finished");
+		
+		System.out.println("Why doesn't github work??");
+		
+		System.out.println("Think I've fixed it maybe??");
+		
+
 		}
 
 }
