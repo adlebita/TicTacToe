@@ -3,104 +3,126 @@ import java.util.*;
 
 public class Board {
 
+	Scanner myScanner = new Scanner(System.in);
+	int count = 1;
+	int playerRow;
+	int playerColumn;
+	String[][] myBoard = new String[3][3];
 	
-Scanner myScanner = new Scanner(System.in);
-String [][] myBoard;
-int count = 1;
-int playerRow;
-int playerColumn;
+	public void playBoard() {
+		setBoard();
+		printBoard();
+		playGame();	
+	}	
 	
-public Board() {
-		System.out.println("Player 1 is crosses X, and player 2 is noughts O.");
-		System.out.println("Start Tic Tac Toe by crosses making first move.");
-		System.out.println("To place marker, type row number first then column number.");
-		playerMove();
-		markerPlacement(this.playerRow, this.playerColumn);
+	public String[][] setBoard(){
 		
-		newBoard();
-		checkBoard();
+		myBoard[0][0] = " ";
+		myBoard[0][1] = " ";
+		myBoard[0][2] = " ";
+		myBoard[1][0] = " ";
+		myBoard[1][1] = " ";
+		myBoard[1][2] = " ";
+		myBoard[2][0] = " ";
+		myBoard[2][1] = " ";
+		myBoard[2][2] = " ";
 		
-		
+		return this.myBoard;
 	}
 	
-		public String[][] newBoard() {
+	public String[][] printBoard() {
 		
-		String[][] myBoard = new String[3][3];
-		
-		myBoard[0][0] = "";
-		myBoard[0][1] = "";
-		myBoard[0][2] = "";
-		myBoard[1][0] = "";
-		myBoard[1][1] = "";
-		myBoard[1][2] = "";
-		myBoard[2][0] = "";
-		myBoard[2][1] = "";
-		myBoard[2][2] = "";
-		
-			for (int row = 0 ; row < myBoard.length ; row++) {
-				
-					for (int column = 0 ; column < myBoard.length ; column++) {
-						if (column == 2) {
-							System.out.println(myBoard[row][column]);
-						if (row == 0 || row == 1) {
-							System.out.println("-+-+-");
-							}
-						} else {
-							System.out.print(myBoard[row][column] + "|");
+		for (int row = 0 ; row < myBoard.length ; row++) {
+			
+				for (int column = 0 ; column < myBoard.length ; column++) {
+					if (column == 2) {
+						System.out.println(myBoard[row][column]);
+					if (row == 0 || row == 1) {
+						System.out.println("-+-+-");
 						}
-					
+					} else {
+						System.out.print(myBoard[row][column] + "|");
 					}
-			}
-		
-		return this.myBoard = myBoard;
-		
+				
+				}
 		}
+		return myBoard;
+	}
+			
+	public int playerMove() {
+	
+		String playerCoordinate = myScanner.nextLine();
+					
+		char[] value = playerCoordinate.toCharArray();
 		
-		public boolean checkBoard() {
-			// check row matches
-		if(myBoard[0][0] == myBoard[0][1] && myBoard[0][1] == myBoard[0][2]) {
-				return true;
-			} else if(myBoard[1][0] == myBoard[1][1] && myBoard[1][1] == myBoard[1][2]) {
-				return true;
-			} else if(myBoard[2][0] == myBoard[2][1] && myBoard[2][1] == myBoard[2][2]) {
-				return true;
-			// check column matches
-			} else if(myBoard[0][0] == myBoard[1][0] && myBoard[1][0] == myBoard[2][0]) {
-				return true;
-			} else if(myBoard[0][1] == myBoard[1][1] && myBoard[1][1] == myBoard[2][1]) {
-				return true;
-			} else if(myBoard[0][2] == myBoard[1][2] && myBoard[1][2] == myBoard[2][2]) {
-				return true;
-			// check diagonal matches
-			} else if(myBoard[0][0] == myBoard[1][1] && myBoard[1][1] == myBoard[2][2]) {
-				return true;
-			} else if(myBoard[0][2] == myBoard[1][1] && myBoard[1][1] == myBoard[2][0]);
-		
+		int playerRow = Character.getNumericValue(value[0]);
+		int playerColumn = Character.getNumericValue(value[1]);
+			
+		this.playerRow = playerRow; 
+		this.playerColumn = playerColumn;
+		return this.playerRow + this.playerColumn;
+	}
+	
+	public boolean markerPlacement(int row, int column) {
+
+		if(myBoard[playerRow][playerColumn] == "X" || myBoard[playerRow][column] == "O") {
+			System.out.println("Please enter another location");
 			return false;
 		}
-		
-		public int playerMove() {
-		
-			int playerRow = myScanner.nextInt();
-			int playerColumn = myScanner.nextInt();
-			
-			this.playerRow = playerRow;
-			this.playerColumn = playerColumn;
-			
-			return this.playerRow + this.playerColumn;
-		}
-		
-		public int markerPlacement(int row, int column) {
-			if(count % 1 == 0) {
-				myBoard[row][column] = "X";
+		return true;
+	}			
+
+	public boolean checkBoard() {
+	if (myBoard[playerRow][playerColumn] == "X" || myBoard[playerRow][playerColumn] == "O") {	
+				// check row matches
+		if(myBoard[playerRow][playerColumn] == myBoard[0][0] && myBoard[0][0] == myBoard[0][1] && myBoard[0][1] == myBoard[0][2]) {
+				System.out.println(myBoard[playerRow][playerColumn] + "'s wins!");
+				return true;
+			} else if(myBoard[playerRow][playerColumn] == myBoard[1][0] && myBoard[1][0] == myBoard[1][1] && myBoard[1][1] == myBoard[1][2]) {
+				System.out.println(myBoard[playerRow][playerColumn] + "'s wins!");
+				return true;
+			} else if(myBoard[playerRow][playerColumn] == myBoard[2][0] && myBoard[2][0] == myBoard[2][1] & myBoard[2][1] == myBoard[2][2]) {
+				System.out.println(myBoard[playerRow][playerColumn] + "'s wins!");
+				return true;
+			// check column matches
+			} else if(myBoard[playerRow][playerColumn] == myBoard[0][0] && myBoard[0][0] == myBoard[1][0] && myBoard[1][0] == myBoard[2][0]) {
+				System.out.println(myBoard[playerRow][playerColumn] + "'s wins!");
+				return true;
+			} else if(myBoard[playerRow][playerColumn] == myBoard[0][1] && myBoard[0][1] == myBoard[1][1] && myBoard[1][1] == myBoard[2][1]) {
+				System.out.println(myBoard[playerRow][playerColumn] + "'s wins!");
+				return true;
+			} else if(myBoard[playerRow][playerColumn] == myBoard[0][2] && myBoard[0][2] == myBoard[1][2] && myBoard[1][2] == myBoard[2][2]) {
+				System.out.println(myBoard[playerRow][playerColumn] + "'s wins!");
+				return true;
+			// check diagonal matches
+			} else if(myBoard[playerRow][playerColumn] == myBoard[1][1] && myBoard[1][1] == myBoard[2][2] && myBoard[2][2] == myBoard[0][0]) {
+				System.out.println(myBoard[playerRow][playerColumn] + "'s wins!");
+				return true;
+			} else if(myBoard[playerRow][playerColumn] == myBoard[1][1] && myBoard[1][1] == myBoard[2][0] && myBoard[2][0] == myBoard[0][2]) {
+				System.out.println(myBoard[playerRow][playerColumn] + "'s wins!");
+				return true;
 			}
-			
-			if(count % 2 == 0) {
-				myBoard[row][column] = "O";
-			}
-			
-			return this.count = count++;
+	}
+		return false;
+	}
+
+	public void playGame() {
+	while(checkBoard() == false) {
+	//	System.out.println("Enter coordinates");
+		do {
+		playerMove();
+		} while(markerPlacement(playerRow, playerColumn) == false);
+		if(count % 2 == 0) {
+			count++;
+			System.out.println("CROSSES turn... Enter a location");
+			myBoard[playerRow][playerColumn] = "O";
+		} else {
+			count++;
+			System.out.println("NOUGHTS turn... Enter a location");
+			myBoard[playerRow][playerColumn] = "X";
 		}
-		
-		System.out.println("Final git check");
+		checkBoard();
+		printBoard();
+		}
+	}
 }

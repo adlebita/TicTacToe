@@ -1,21 +1,17 @@
 package game;
+import java.util.*;
 
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Welcome to NOUGHTS & CROSSES");
+		System.out.println("To begin please enter a location. Crosses go first.");
 		Board tictactoe  = new Board();
-		tictactoe.checkBoard();
-		
-		System.out.println(tictactoe.checkBoard());
-
-		System.out.println("Run Finished");
-		
-		System.out.println("Why doesn't github work??");
-		
-		System.out.println("Think I've fixed it maybe??");
-		
-
-		}
+		tictactoe.playBoard();
+		sc.close();
+	}
 
 }
